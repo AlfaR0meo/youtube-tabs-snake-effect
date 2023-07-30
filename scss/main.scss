@@ -1,0 +1,95 @@
+// ■■■■■ BASE ■■■■■■■■■■■■■■■■■■■■■■■■
+@import "./base/all";
+// ■■■■■ BLOCKS ■■■■■■■■■■■■■■■■■■■■■■
+@import "./blocks/all";
+/* ■■■■■ СТИЛИ САЙТА ■■■■■■■■■■■■■■■■■ */
+// :::::::::::::::::::::::::::::::::::
+:root {
+    --ff-body: 'Rubik', sans-serif;
+    --ff-heading: 'Nunito', sans-serif;
+    --ff-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --bgc: hsl(0 0% 10%);
+}
+//sass --watch scss/main.scss css/style.css
+// :::::::::::::::::::::::::::::::::::
+.page-wrapper {
+    padding: 1rem;
+    background-color: var(--bgc);
+}
+
+h1 {
+    margin-block: 1.1em;
+    font-size: 3rem;
+    font-family: var(--ff-heading);
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.5;
+    span {
+        color: red;
+        background-color: white;
+        padding: .15em .35em;
+        border-radius: .5em;
+        font-weight: 800;
+    }
+}
+
+.tabs {
+    --indicator-height: 4px;
+    --indicator-color: hsl(0 100% 60%);
+    --indicator-transition: 200ms;
+
+    //margin-inline: auto;
+    width: fit-content;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: 1.25rem;
+    
+    position: relative;
+
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+    }
+    &::before {
+        width: 100%;
+        height: 1px;
+        background-color: hsl(0 0% 30%);
+    }
+    &::after {
+        width: 100%;
+        height: var(--indicator-height);
+
+        transform: translateX(var(--indicator-move, 0)) scaleX(var(--indicator-width, 0));
+        transform-origin: left;
+        // scale: var(--indicator-width, 0) 1;
+        // translate: var(--indicator-move, 0) 0;
+        
+        background-color: var(--indicator-color);
+        transition: var(--indicator-transition);
+    }
+
+    &__button {
+        padding: .9em 1.7em calc(.9em + var(--indicator-height));
+        color: hsl(0 0% 60%);
+        background-color: transparent;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: color 200ms, background-color 200ms;
+
+        &--active {
+            color: hsl(0 0% 85%);
+            background-color: hsl(0 0% 15%);
+        }
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: hsl(0 0% 85%);
+            }
+        }
+    }
+}
